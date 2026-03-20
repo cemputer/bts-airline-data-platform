@@ -10,13 +10,13 @@ Bu belge, uçtan uca data engineering pipeline'ının tüm adımlarını takip e
 - [x] Proje klasör yapısı oluşturuldu: `ingestion/` `processing/` `analytics/` `infra/` `docs/`
 - [x] `uv init` ile Python ortamı kuruldu, `pyproject.toml` ve `uv.lock` oluşturuldu
 - [x] `.env.example` dosyası yazıldı (GCP project id, bucket name, BQ dataset, servis hesabı path)
-- [ ] GCP hesabında proje oluşturuldu, servis hesabı ve JSON key indirildi
+- [x] GCP hesabında proje oluşturuldu, servis hesabı ve JSON key indirildi
 
 ---
 
 ## FAZ 1 — IaC: Cloud Altyapı (Terraform)
 
-- [ ] Terraform proje yapısı kuruldu: `main.tf` · `variables.tf` · `outputs.tf`
+- [ ] Terraform proje yapısı kuruldu: `main.tf` · `variables.tf` · `outputs.tf` · `terraform.tfvars`
 - [ ] GCS bucket kaynakları tanımlandı (bronze / silver / gold prefix, versioning, lifecycle)
 - [ ] BigQuery dataset kaynağı tanımlandı (region, expiry)
 - [ ] IAM servis hesabı rolleri tanımlandı (Storage Admin, BQ Admin)

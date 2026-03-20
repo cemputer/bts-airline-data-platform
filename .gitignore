@@ -1,11 +1,24 @@
+#env files
 .env
 
+#GCP Service Account Keys
+infra/keys/
 *.json
 
+#Python
 __pycache__/
 *.pyc
 .venv/
 
+# Data Dir (Big Data Files) 
 data/
 
+#uv
 .python-version
+
+#terraform
+infra/terraform.tfvars
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/keys/
+infra/.terraform/
