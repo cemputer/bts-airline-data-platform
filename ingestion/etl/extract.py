@@ -6,11 +6,11 @@ import click # for terminal dynamically parameters manage.
 import sys
 import zipfile
 from pathlib import Path
-import requests
+import requests 
 import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-from config import RAW_DATA_DIR, LOOKUP_DATA_DIR, PREZIP_BASE_URL,PREZIP_FILENAME_TEMPLATE, SELECTED_COLUMNS
+from config import RAW_DATA_DIR, PREZIP_BASE_URL,PREZIP_FILENAME_TEMPLATE, SELECTED_COLUMNS
 
 @click.command()
 @click.option('--year',required=True, type=int )

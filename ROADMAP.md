@@ -29,7 +29,7 @@ Bu belge, uçtan uca data engineering pipeline'ının tüm adımlarını takip e
 - [x] Airflow için `Dockerfile` yazıldı, `docker-compose.yml`'a airflow + postgres servisleri eklendi
 - [x] TranStats PREZIP URL'leri keşfedildi, 2023–2024-2025 aylarına ait zip listesi çıkarıldı
 - [x] CSV extract scripti yazıldı: zip indir → aç → kolonları filtrele → ham CSV kaydet
-- [x] Lookup tabloları indirildi (Carriers, Airports, CancellationCode), GCS'e yüklendi
+- [x] raw datalar postgrese gönderildi.
 - [ ] CSV → Parquet dönüşümü yapıldı, GCS `bronze/year=/month=/` yapısına yüklendi
 - [ ] Ham veri local PostgreSQL'e yüklendi (Spark testi ve geliştirme için)
 - [ ] Airflow DAG yazıldı: tüm ingestion adımları orchestrate edildi, monthly schedule + backfill desteklendi

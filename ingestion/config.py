@@ -74,4 +74,4 @@ DB_CONFIG = {
 # Schema and table names
 RAW_SCHEMA = "raw"
 STAGING_SCHEMA = "staging"
-FLIGHTS_TABLE = "flights"
+REPORT_TABLE = "carrier_report"
