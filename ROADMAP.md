@@ -27,11 +27,18 @@ Bu belge, uçtan uca data engineering pipeline'ının tüm adımlarını takip e
 ## FAZ 2 — Data Ingestion Pipeline
 
 - [x] Airflow için `Dockerfile` yazıldı, `docker-compose.yml`'a airflow + postgres servisleri eklendi
-- [x] TranStats PREZIP URL'leri keşfedildi, 2023–2024-2025 aylarına ait zip listesi çıkarıldı
-- [x] CSV extract scripti yazıldı: zip indir → aç → kolonları filtrele → ham CSV kaydet
-- [x] raw datalar postgrese gönderildi.
-- [ ] CSV → Parquet dönüşümü yapıldı, GCS `bronze/year=/month=/` yapısına yüklendi
-- [ ] Ham veri local PostgreSQL'e yüklendi (Spark testi ve geliştirme için)
+- [x] TranStats PREZIP URL'leri keşfedildi, 2023–2025 aylarına ait zip listesi doğrulandı
+- [x] `config.py` yazıldı: kolon listesi, URL şablonu, DB bağlantı bilgileri tek yerde toplandı
+- [x] `utils.py` yazıldı: DB bağlantısı ve logging tüm scriptler arasında paylaşılıyor
+- [x] `extract.py` yazıldı: ZIP indir → aç → kolonları filtrele → `data/raw/YYYY/YYYY_MM.csv` kaydet
+- [x] `load_raw.py` yazıldı: ham CSV → `raw.carrier_report` (tüm kolonlar TEXT, idempotent)
+- [x] `transform_load_staging.py` yazıldı: tip dönüşümü (FLOAT, BOOLEAN, DATE) + `delay_category` türetilmiş kolonu → `staging.carrier_report`
+- [x] 2023 Ocak verisi (538.837 satır) raw ve staging'e yüklendi, pgcli ile doğrulandı
+- [x] Lookup tabloları (`L_MONTHS`, `L_WEEKDAYS`, `L_UNIQUE_CARRIERS`, `L_AIRPORT`, `L_YESNO_RESP`, `L_CANCELLATION`) ziplenip repoya eklendi
+- [x] Kolon açıklamaları `docs/` altında TR ve EN olarak dokümante edildi
+- [x] `ingestion/notebooks/EDA_1.ipynb` ile staging verisi üzerinde data profiling yapıldı
+- [x] CSV → Parquet dönüşümü yapıldı, GCS `bronze/year=/month=/` yapısına yüklendi
+- [x] Ham veri local PostgreSQL'e yüklendi (Spark testi ve geliştirme için)
 - [ ] Airflow DAG yazıldı: tüm ingestion adımları orchestrate edildi, monthly schedule + backfill desteklendi
 
 ---
