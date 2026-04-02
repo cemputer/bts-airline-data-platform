@@ -54,6 +54,7 @@ services:
   airflow-webserver:
     build: ./airflow
     env_file: ../.env
+    hostname: airflow-webserver
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
@@ -62,7 +63,10 @@ services:
       - "8080:8080"
     volumes:
       - ../ingestion/dags:/opt/airflow/dags # DAG files are read from local folder
+      - ../ingestion:/opt/airflow/ingestion
+      - ../data:/opt/airflow/data
       - ../infra/keys:/opt/airflow/keys # GCP key is mounted here, not copied into image
+      - airflow-logs:/opt/airflow/logs
     networks:
       - pipeline-net
     depends_on:
@@ -74,13 +78,17 @@ services:
   airflow-scheduler:
     build: ./airflow
     env_file: ../.env
+    hostname: airflow-scheduler
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     command: airflow scheduler
     volumes:
       - ../ingestion/dags:/opt/airflow/dags
+      - ../ingestion:/opt/airflow/ingestion
+      - ../data:/opt/airflow/data
       - ../infra/keys:/opt/airflow/keys
+      - airflow-logs:/opt/airflow/logs
     networks:
       - pipeline-net
     depends_on:
@@ -90,6 +98,7 @@ services:
 # Named volume — postgres data survives container restarts and removals
 volumes:
   postgres-data:
+  airflow-logs:
  
 # All services talk to each other using service names (e.g. postgres:5432), not localhost
 networks:
