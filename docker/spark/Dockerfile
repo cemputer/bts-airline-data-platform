@@ -28,6 +28,9 @@ RUN curl -fL \
     -o "${SPARK_JARS_DIR}/spark-bigquery-with-dependencies_2.12-${BQ_JAR_VERSION}.jar" \
     && ls -lh "${SPARK_JARS_DIR}/spark-bigquery-with-dependencies_2.12-${BQ_JAR_VERSION}.jar"
 
+# Install Python dependencies needed by spark_transform.py
+RUN pip install --no-cache-dir click
+
 # Copy processing scripts — baked into image at build time
 # For live editing during development, override with a volume mount in compose
 COPY processing/ /opt/spark/processing/
