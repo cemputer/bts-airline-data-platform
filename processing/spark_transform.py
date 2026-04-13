@@ -199,15 +199,19 @@ def main(year, month):
     df.write.mode("overwrite").parquet(silver_path)
 
     # 10) Load BigQuery ────────────────────────────────────────────────────────
-    # writeMethod=direct: streams data without GCS temp bucket (requires BQ Storage Write API)
+    # parentProject: explicitly set because authorized_user JSON has no project_id field
+    # writeMethod=indirect: stages data in GCS first, then loads into BQ via load job
+    # temporaryGcsBucket: required for indirect write — uses same bucket as bronze/silver
     logger.info("Loading BigQuery table: %s", bq_table)
     (
         df.write
         .format("bigquery")
-        .option("table",           bq_table)
-        .option("partitionField",  BQ_PARTITION_COLUMN)   # flight_date — DATE column
-        .option("clusteredFields", ",".join(BQ_CLUSTER_COLUMNS))  # reporting_airline, origin
-        .option("writeMethod",     "direct")
+        .option("table",              bq_table)
+        .option("parentProject",      GCP_PROJECT_ID)
+        .option("partitionField",     BQ_PARTITION_COLUMN)
+        .option("clusteredFields",    ",".join(BQ_CLUSTER_COLUMNS))
+        .option("writeMethod",        "indirect")
+        .option("temporaryGcsBucket", GCS_BUCKET)
         .mode("overwrite")
         .save()
     )
