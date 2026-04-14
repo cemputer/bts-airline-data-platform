@@ -34,7 +34,7 @@ def main(year, month):
     logger.info("Starting transform | year=%s month=%s", year, month)
 
     # 2) SparkSession — GCS + BigQuery connector config ────────────────────────
-    # GCS auth: authorized_user (ADC) format — NOT service account
+    # GCS auth: service account JSON keyfile
     # google.cloud.auth.type=USER_CREDENTIALS tells the connector to use
     # the refresh_token flow instead of a service account JSON keyfile
     spark = (
@@ -46,11 +46,12 @@ def main(year, month):
                 "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
         .config("spark.hadoop.fs.AbstractFileSystem.gs.impl",
                 "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
+        
         # ADC auth type: use authorized_user (refresh token) credentials
-        .config("spark.hadoop.google.cloud.auth.type", "USER_CREDENTIALS")
-        # Path to the ADC JSON containing client_id, client_secret, refresh_token
-        .config("spark.hadoop.google.cloud.auth.user.credentials.file",
+        .config("spark.hadoop.google.cloud.auth.type", "SERVICE_ACCOUNT_JSON_KEYFILE")
+        .config("spark.hadoop.google.cloud.auth.service.account.json.keyfile",
                 GCP_CREDENTIALS_PATH)
+        
         # BigQuery connector — project and credentials
         .config("spark.datasource.bigquery.project", GCP_PROJECT_ID)
         .config("spark.datasource.bigquery.credentials.file", GCP_CREDENTIALS_PATH)
@@ -212,7 +213,7 @@ def main(year, month):
         .option("clusteredFields",    ",".join(BQ_CLUSTER_COLUMNS))
         .option("writeMethod",        "indirect")
         .option("temporaryGcsBucket", GCS_BUCKET)
-        .mode("overwrite")
+        .mode("append")
         .save()
     )
 

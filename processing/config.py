@@ -1,6 +1,6 @@
 # ── GCP ───────────────────────────────────────────────────────────────────────
 GCP_PROJECT_ID       = "bd-project-cemputer"        # GCP project ID
-GCP_CREDENTIALS_PATH = "/opt/spark/keys/gcp-key.json"  # container-internal ADC JSON path
+GCP_CREDENTIALS_PATH = "/opt/spark/keys/bd-project-cemputer-credentials.json"
 
 # ── GCS ───────────────────────────────────────────────────────────────────────
 GCS_BUCKET    = "bts-airline-bronze"                # bucket name (gs://)
