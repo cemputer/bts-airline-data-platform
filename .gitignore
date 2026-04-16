@@ -23,3 +23,10 @@ infra/terraform.tfstate
 infra/terraform.tfstate.backup
 infra/keys/
 infra/.terraform/
+
+#dbt
+profiles.yml
+~/.dbt/
+analytics/dbt/bts_airline/target/
+analytics/dbt/bts_airline/dbt_packages/
+analytics/dbt/bts_airline/logs/
