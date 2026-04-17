@@ -5,16 +5,22 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "db-dtypes>=1.4.4",
     "dotenv>=0.9.9",
+    "google-cloud-bigquery>=3.41.0",
+    "google-cloud-bigquery-storage>=2.37.0",
     "google-cloud-storage>=3.10.1",
     "ipykernel>=7.2.0",
     "jupyter>=1.1.1",
     "matplotlib>=3.10.8",
     "pandas>=3.0.1",
-    "psycopg2>=2.9.11",
+    "plotly>=6.7.0",
+    "psycopg2-binary>=2.9.11",
     "pyarrow>=23.0.1",
+    "python-dotenv>=1.2.2",
     "requests>=2.32.5",
     "seaborn>=0.13.2",
+    "streamlit>=1.56.0",
 ]
 
 [dependency-groups]
