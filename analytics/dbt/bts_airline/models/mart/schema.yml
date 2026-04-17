@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: mart_carrier_performance_trends
+  - name: mart_delay_by_carrier
     description: "Monthly airline flight volume, cancellation rates, and delay performance trends."
     columns:
       - name: flight_year
@@ -82,3 +82,20 @@ models:
         description: "Percentage of security-related delays (%)"
       - name: late_aircraft_delay_pct
         description: "Percentage of delays caused by the late arrival of the previous aircraft (%)"
+
+  - name: mart_flights_by_carrier
+    description: "Total flight volume and diversion rates per airline."
+    columns:
+      - name: reporting_airline
+        description: "Airline IATA Code"
+        tests:
+          - unique
+          - not_null
+      - name: airline_name
+        description: "Full name of the airline"
+      - name: total_flights
+        description: "Total number of scheduled flights"
+      - name: total_diverted_flights
+        description: "Total number of flights diverted to another airport"
+      - name: diverted_rate_pct
+        description: "Percentage of diverted flights (%)"
