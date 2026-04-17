@@ -46,14 +46,14 @@ Bu belge, uçtan uca data engineering pipeline'ının tüm adımlarını takip e
 
 ## FAZ 3 — Data Processing (PySpark)
 
-- [ ] Spark için `Dockerfile` yazıldı (local mode), `docker-compose.yml`'a spark servisi eklendi
-- [ ] PySpark scripti: GCS bronze okundu, tip dönüşümleri yapıldı (date, int cast)
-- [ ] Null yönetimi: iptal uçuşlarda delay kolonları 0 ile dolduruldu
-- [ ] Lookup join'leri uygulandı: airline adı, origin/dest şehir-eyalet
-- [ ] Türetilmiş kolonlar üretildi: `is_delayed` (ArrDelay > 15) · `delay_category` (No Delay / Minor / Major / Severe)
-- [ ] Silver Parquet GCS `silver/year=/month=/` yapısına yazıldı
-- [ ] BigQuery staging tablosuna yüklendi; partition (FlightDate), cluster (Airline + Origin) uygulandı
-- [ ] Spark task'ı Airflow DAG'ına eklendi, ingestion downstream'ine bağlandı
+- [x] Spark için `Dockerfile` yazıldı (local mode), `docker-compose.yml`'a spark servisi eklendi
+- [x] PySpark scripti: GCS bronze okundu, tip dönüşümleri yapıldı (date, int cast)
+- [x] Null yönetimi: iptal uçuşlarda delay kolonları 0 ile dolduruldu
+- [x] Lookup join'leri uygulandı: airline adı, origin/dest şehir-eyalet
+- [x] Türetilmiş kolonlar üretildi: `is_delayed` (ArrDelay > 15) · `delay_category` (No Delay / Minor / Major / Severe)
+- [x] Silver Parquet GCS `silver/year=/month=/` yapısına yazıldı
+- [x] BigQuery staging tablosuna yüklendi; partition (FlightDate), cluster (Airline + Origin) uygulandı
+- [x] Spark task'ı Airflow DAG'ına eklendi, ingestion downstream'ine bağlandı
 
 ---
 
