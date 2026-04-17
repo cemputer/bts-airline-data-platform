@@ -110,6 +110,22 @@ services:
     networks:
       - pipeline-net
 
+# --- Streamlit ---
+  # Serves the dashboard at localhost:8501
+  streamlit:
+    build:
+      context: ..                              # repo root: Dockerfile needs both docker/ and analytics/
+      dockerfile: docker/streamlit/Dockerfile
+    env_file:
+      - ../.env
+    ports:
+      - "8501:8501"
+    volumes:
+      - ../infra/keys:/app/keys               # directory mount — avoids Docker single-file mount trap
+    networks:
+      - pipeline-net
+    restart: unless-stopped
+
 # Named volume — postgres data survives container restarts and removals
 volumes:
   postgres-data:

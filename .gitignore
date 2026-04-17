@@ -12,7 +12,9 @@ __pycache__/
 ingestion/.ipynb_checkpoints/
 
 # Data Dir (Big Data Files) 
-data/
+data/lookups/
+data/raw/
+data/sample/
 
 #uv
 .python-version
@@ -31,3 +33,4 @@ analytics/dbt/bts_airline/target/
 analytics/dbt/bts_airline/dbt_packages/
 analytics/dbt/bts_airline/logs/
 logs/
+.bruin.yml
