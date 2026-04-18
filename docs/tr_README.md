@@ -16,7 +16,7 @@ ABD iç hat uçuş verilerini uçtan uca işleyen, gecikme ve iptal örüntüler
 ABD'de her yıl milyonlarca iç hat uçuşu gerçekleşiyor; ancak gecikme, iptal ve havalimanı yoğunluk desenlerini ham veri içinden anlamlı hale getirmek zor ve maliyetlidir. Bu proje, BTS/TranStats kaynağından 2023–2025 dönemine ait 20,9 milyon kayıtlık veriyi otomatik indirir, Bronze → Silver → Gold katman mimarisinde işler ve iş metriklerini interaktif bir dashboard ile sunar.
 
 
-![Dashboard](docs/doc_images/dashboard.png)
+![Dashboard](doc_images/dashboard.png)
 
 ---
 

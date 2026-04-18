@@ -18,6 +18,10 @@ aggregated_metrics as (
         sum(cast(cancelled as INT64)) as total_cancelled_flights,
         round(sum(cast(cancelled as INT64)) / count(*) * 100, 2) as cancellation_rate_pct,
 
+        -- Diverted flights
+        sum(cast(diverted as INT64)) as total_diverted_flights,
+        round(sum(cast(diverted as INT64)) / count(*) * 100, 2) as diverted_rate_pct,
+
         -- Performance Metrics
         round(avg(dep_delay), 2) as avg_dep_delay_mins,
         round(avg(arr_delay), 2) as avg_arr_delay_mins,
