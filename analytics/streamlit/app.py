@@ -2,14 +2,12 @@ import os
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from dotenv import load_dotenv
 from google.cloud import bigquery
 from google.oauth2 import service_account
 
 # Must be the first Streamlit command
 st.set_page_config(page_title="BTS Airline On-Time Performance", layout="wide")
 
-load_dotenv()
 
 # --- BigQuery client setup ---
 PROJECT_ID = os.getenv("GCP_PROJECT_ID") or st.secrets.get("GCP_PROJECT_ID")
