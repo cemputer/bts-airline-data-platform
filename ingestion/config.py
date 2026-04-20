@@ -78,6 +78,6 @@ REPORT_TABLE = "carrier_report"
 
 # --- GCS (Google Cloud Storage) ---
 GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME", "")
-GCS_KEY_PATH    = os.getenv("GCS_KEY_PATH", "")    # path to service account JSON key
+GCS_KEY_PATH = "/opt/airflow/keys/" + os.environ["GCP_KEY_FILENAME"]    # path to service account JSON key
 GCS_BRONZE_PREFIX = "bronze/carrier_report"
 GCS_LOOKUPS_PREFIX = "bronze/lookups"

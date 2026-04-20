@@ -19,7 +19,11 @@ def run_spark_transform(**context):
     cmd = [
         "docker", "run", "--rm",
         "--network", "docker_pipeline-net",
-        "-e", "GOOGLE_APPLICATION_CREDENTIALS=/opt/spark/keys/{os.environ['GCP_KEY_FILENAME']}",
+        "-e", f"GOOGLE_APPLICATION_CREDENTIALS=/opt/spark/keys/{os.environ['GCP_KEY_FILENAME']}",
+        "-e", f"GCP_KEY_FILENAME={os.environ['GCP_KEY_FILENAME']}",
+        "-e", f"GCP_PROJECT_ID={os.environ['GCP_PROJECT_ID']}",
+        "-e", f"GCS_BUCKET_NAME={os.environ['GCS_BUCKET_NAME']}",
+        "-e", f"BQ_DATASET={os.environ['BQ_DATASET']}",
         "docker-spark",
         "/opt/spark/bin/spark-submit",
         "--master", "local[*]",
