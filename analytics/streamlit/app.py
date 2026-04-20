@@ -12,9 +12,19 @@ st.set_page_config(page_title="BTS Airline On-Time Performance", layout="wide")
 load_dotenv()
 
 # --- BigQuery client setup ---
-KEY_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-PROJECT_ID = os.getenv("GCP_PROJECT_ID")
-credentials = service_account.Credentials.from_service_account_file(KEY_PATH)
+PROJECT_ID = os.getenv("GCP_PROJECT_ID") or st.secrets.get("GCP_PROJECT_ID")
+
+if "gcp_service_account" in st.secrets:
+    # Streamlit Community Cloud — credentials from secrets
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"]
+    )
+else:
+    # Local — credentials from env var
+    credentials = service_account.Credentials.from_service_account_file(
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+    )
+
 client = bigquery.Client(credentials=credentials, project=PROJECT_ID)
 
 DATASET = f"{os.environ['GCP_PROJECT_ID']}.bts_dbt"
